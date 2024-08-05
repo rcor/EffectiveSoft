@@ -32,10 +32,10 @@ jobs:
           parameter-overrides: VpcId=${{ secrets.VPC_ID }},SubnetIds=${{
             secrets.SUBNETS_ID }},DesiredCount=${{ secrets.DESIRED_COUNT
             }},RepositoryName=${{ secrets.REPOSITORY_NAME }}
-  docker-validate:
+  docker-validate-deploy:
     name: Validate  Dockerfile
     runs-on: ubuntu-latest
-    needs: cloudformation-linter
+    needs: cloudformation-linter-and-deploy
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
