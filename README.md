@@ -6,6 +6,17 @@
 
 The following repo is just a technical test, it is not a code that is recommended for use in production.
 
+## What is include in the follow repository
+
+* Docker container with a NGINX and html ( the container return in the port 80 a **hello world**)
+* Cloudformation Template to deploy an ECR,ECS, ELB, IAM Role
+* A PR basic template
+* PR Actions
+* Deploy Action ( Deploy the cloudformation, publish the docker image in the repository and deploy the app in the ECS tasks)
+* Cost of the infraestructure
+* Diagram 
+  
+
 ## How to run locally 
 
 ```
