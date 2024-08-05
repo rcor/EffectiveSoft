@@ -18,11 +18,9 @@ jobs:
 
       - name: Print the Cloud Formation Linter Version & run Linter.
         run: |
-          pwd
-          ls -la
           cfn-lint --version
           cd cloudformation
-          cfn-lint -t ./template.yml
+          cfn-lint -t ./template.yaml
 
   docker-validate:
     name: Validate  Dockerfile
