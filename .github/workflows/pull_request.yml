@@ -1,0 +1,22 @@
+name: Validate CloudFormation and Dockerfile
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    name: Validate CloudFormation and Dockerfile
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Validate CloudFormation template
+      run: |
+        aws cloudformation validate-template --template-body file://cloudformation/stack.yml
+    - name: Validate Dockerfile
+      run: |
+        docker run --rm -i hadolint/hadolint < Dockerfile
