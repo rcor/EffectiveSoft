@@ -12,12 +12,16 @@ Parameters:
     Type: Number
     Default: 1
     Description: The desired number of ECS tasks.
+  RepositoryName:
+    Type: String
+    Default: hello-world
+    Description: ECR Repository Name
 
 Resources:
   ECRRepository:
     Type: AWS::ECR::Repository
     Properties:
-      RepositoryName: hello-world
+      RepositoryName: !Ref RepositoryName
 
   ECSCluster:
     Type: AWS::ECS::Cluster
@@ -127,7 +131,7 @@ Resources:
       NetworkMode: awsvpc
       RequiresCompatibilities:
         - FARGATE
-      ExecutionRoleArn: !Ref ECSExecutionRole
+      ExecutionRoleArn: !GetAtt ECSExecutionRole.Arn
       ContainerDefinitions:
         - Name: my-application-container
           Image: !Sub "${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/my-application-repo:latest"
