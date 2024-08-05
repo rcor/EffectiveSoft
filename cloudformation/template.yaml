@@ -12,12 +12,16 @@ Parameters:
     Type: Number
     Default: 1
     Description: The desired number of ECS tasks.
+  RepositoryName:
+    Type: String
+    Default: hello-world
+    Description: ECR Repository Name
 
 Resources:
   ECRRepository:
     Type: AWS::ECR::Repository
     Properties:
-      RepositoryName: hello-world
+      RepositoryName: !Ref RepositoryName
 
   ECSCluster:
     Type: AWS::ECS::Cluster
